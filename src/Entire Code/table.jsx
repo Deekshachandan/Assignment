@@ -12,18 +12,23 @@ import {
   Td,
   Button,
   Input,
-  Box
+  Box,
+Select
+
+
+
 } from "@chakra-ui/react";
 import { ArrowDownIcon, ArrowUpIcon } from "@chakra-ui/icons";
 import axios from "axios";
 
-function TableData() {
+function EntireCode() {
 
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setpage] = useState(1);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState("asc");
+  const [select, setSelect] = useState("rank")
  
 
   useEffect(() => {
@@ -86,6 +91,33 @@ function TableData() {
     }
   });
 
+
+//To handle Select
+const handleSelect = (e) => {
+  setSelect(e.target.value);
+}
+
+
+// Final data 
+const FinalMap = [...CompletedSort].sort((a, b) => {
+    const valueA = a[select];
+    const valueB = b[select];
+
+    if (typeof valueA   ===   "string"   &&     typeof   valueB  ===  "string") {
+     
+      return valueA.localeCompare(valueB);
+    }
+
+    return valueA - valueB;
+  });
+
+
+
+
+
+
+
+
   return (
     <>
       <Input
@@ -96,7 +128,22 @@ function TableData() {
         mt={10}
       />
 
-      <Table
+
+<Select placeholder='Select option'
+ value={select}
+  onChange={handleSelect}
+  width="10%"
+  ml={5}
+>
+  <option value='rank'>Rank</option>
+  <option value='price_usd'>Price(USD)</option>
+  <option value='price_btc'>Price(BTC)</option>
+  <option value='market'> Market Cap USD</option>
+  </Select>
+
+
+
+<Table
         variant="striped"
         colorScheme="pink"
         size="md"
@@ -144,7 +191,7 @@ function TableData() {
           </Tr>
         </Thead>
         <Tbody>
-          {CompletedSort.map((ticker) => (
+          {FinalMap.map((ticker) => (
             <Tr key={ticker.id}>
               <Td>{ticker.id}</Td>
               <Td>{ticker.name}</Td>
@@ -183,4 +230,4 @@ function TableData() {
   );
 }
 
-export default TableData;
+export default EntireCode;

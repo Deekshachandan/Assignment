@@ -1,10 +1,10 @@
 
 import './App.css';
 //You can check out the complete code in this component.
-// import TableData from "./Entire Code/table"   
+import EntireCode from "./Entire Code/table"   
 
 
-import MainTable from './Components/Main';
+// import MainTable from './Components/Main';
 
 
 
@@ -12,8 +12,11 @@ import MainTable from './Components/Main';
 function App() {
   return (
     <div className="App">
-     {/* <TableData /> */}
-<MainTable />
+
+<EntireCode />
+
+
+{/* <MainTable /> */}
     </div>
   );
 }
