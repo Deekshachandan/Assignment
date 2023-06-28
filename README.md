@@ -14,6 +14,9 @@ data in ascending or descending order by clicking on the column headers.
 3)Filter the data by comparing the search query against the "Name" and "ID" fields.
 4) pagination for the table, allowing users to navigate through multiple
 pages of data.
+5)Select tag  for filtering the data based on specific criteria (e.g.,
+rank, price, percent change).
+
 
 
 # Deployed Link 
